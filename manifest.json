@@ -1,7 +1,7 @@
 {
-  "name": "منصة تجلّي للمشاريع البرمجية",
+  "name": "تجلّي - منصة المشاريع البرمجية",
   "short_name": "تجلّي",
-  "description": "منصة تفاعلية لتحويل المفاهيم البرمجية النظرية إلى مشاريع عملية.",
+  "description": "منصة تفاعلية لعرض واستكشاف المشاريع البرمجية",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
@@ -11,12 +11,14 @@
     {
       "src": "https://cdn-icons-png.flaticon.com/512/1006/1006771.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "https://cdn-icons-png.flaticon.com/512/1006/1006771.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
