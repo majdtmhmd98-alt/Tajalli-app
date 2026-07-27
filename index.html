@@ -1,4 +1,90 @@
-DOCTYPE html>            padding: 2rem 5%;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة تجلّي | منصة المشاريع البرمجية التفاعلية</title>
+
+    <!-- إعدادات الـ PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/1006/1006771.png">
+
+    <style>
+        /* المتغيرات وإعادة الضبط */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+            --border-color: #334155;
+            --success-color: #4ade80;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* شريط التنقل العلوي */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 0.5rem 0.8rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: var(--accent-color);
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+
+        /* حاوية الصفحات */
+        main {
+            flex: 1;
+            padding: 2rem 5%;
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
@@ -84,4 +170,241 @@ DOCTYPE html>            padding: 2rem 5%;
             border-radius: 8px;
             overflow: hidden;
         }
-        
+
+        th, td {
+            padding: 1rem;
+            text-align: right;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th { background-color: rgba(56, 189, 248, 0.1); color: var(--accent-color); }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر وشريط التنقل بين الصفحات الـ 8 -->
+    <header>
+        <div class="logo" onclick="navigateTo('home')">تجلّي</div>
+        <nav>
+            <button class="nav-btn active" onclick="navigateTo('home')">1. الرئيسية</button>
+            <button class="nav-btn" onclick="navigateTo('projects')">2. استكشاف المشاريع</button>
+            <button class="nav-btn" onclick="navigateTo('project-details')">3. تفاصيل المشروع</button>
+            <button class="nav-btn" onclick="navigateTo('showcase')">4. معرض الحلول</button>
+            <button class="nav-btn" onclick="navigateTo('leaderboard')">5. لوحة الصدارة</button>
+            <button class="nav-btn" onclick="navigateTo('submit')">6. تسليم كود</button>
+            <button class="nav-btn" onclick="navigateTo('profile')">7. الملف الشخصي</button>
+            <button class="nav-btn" onclick="navigateTo('about')">8. عن المنصة</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- إشعار تثبيت التطبيق (PWA Banner) -->
+        <div id="pwa-install-banner">
+            <span>💡 قم بتثبيت تطبيق "تجلّي" على هاتفك للوصول السريع بدون إنترنت!</span>
+            <button class="btn" id="install-btn">تثبيت التطبيق</button>
+        </div>
+
+        <!-- الصفحة 1: الرئيسية -->
+        <section id="home" class="page active">
+            <div style="text-align: center; padding: 2rem 0;">
+                <h1>مرحباً بك في منصة تجلّي</h1>
+                <p>البيئة التفاعلية الأولى لتحويل المفاهيم البرمجية النظرية إلى مشاريع عمليّة متكاملة.</p>
+                <button class="btn" onclick="navigateTo('projects')">ابدأ تصفح المشاريع</button>
+            </div>
+            <div class="grid">
+                <div class="card"><h3>🎯 مشاريع تطبيقية</h3><p>مشاريع مصممة لتصقل مهاراتك في البرمجة وتوليد الأفكار.</p></div>
+                <div class="card"><h3>🔍 مراجعة الأكواد</h3><p>احصل على تغذية راجعة وملاحظات لتحسين أداء كودك.</p></div>
+                <div class="card"><h3>🏆 مجتمع مجتهد</h3><p>تنافس مع زملائك واجمع النقاط لتعلي لوحة الصدارة.</p></div>
+            </div>
+        </section>
+
+        <!-- الصفحة 2: استكشاف المشاريع -->
+        <section id="projects" class="page">
+            <h2>استكشاف المشاريع والتحديات</h2>
+            <p>اختر المشكلة التي ترغب في حلها اليوم وابدأ في كتابة الكود:</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>نظام إدارة درجات الطلاب</h3>
+                    <p>اللغة: Python | المستوى: مبتدئ</p>
+                    <button class="btn" onclick="navigateTo('project-details')">عرض التفاصيل</button>
+                </div>
+                <div class="card">
+                    <h3>متتبع العادات اليومية</h3>
+                    <p>اللغة: JavaScript / HTML | المستوى: متوسط</p>
+                    <button class="btn" onclick="navigateTo('project-details')">عرض التفاصيل</button>
+                </div>
+                <div class="card">
+                    <h3>محلل النصوص والبطاقات Flashcards</h3>
+                    <p>اللغة: Python | المستوى: متقدم</p>
+                    <button class="btn" onclick="navigateTo('project-details')">عرض التفاصيل</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- الصفحة 3: تفاصيل المشروع -->
+        <section id="project-details" class="page">
+            <h2>مشروع: نظام إدارة درجات الطلاب</h2>
+            <div class="card">
+                <h3>الوصف ومتطلبات الحل:</h3>
+                <p>المطلوب بناء برنامج بلغة Python يقوم بالآتي:</p>
+                <ul style="margin-right: 1.5rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    <li>إضافة بيانات الطالب (الاسم، المعرف، الدرجات).</li>
+                    <li>حساب المعدل التراكمي تلقائياً.</li>
+                    <li>تخزين البيانات وقراءتها من ملف خارجي (مثل JSON أو TXT).</li>
+                </ul>
+                <button class="btn" onclick="navigateTo('submit')">الانتقال لصفحة تسليم الكود</button>
+            </div>
+        </section>
+
+        <!-- الصفحة 4: معرض الحلول -->
+        <section id="showcase" class="page">
+            <h2>معرض الحلول المتميزة</h2>
+            <p>استعرض أكواد المطورين الآخرين واستفد من طرقهم المبتكرة في الحل:</p>
+            <div class="grid">
+                <div class="card">
+                    <h3>حل بواسطة: أحمد علي</h3>
+                    <p>استخدم مكتبة `dataclasses` لتنظيم بيانات الطلاب بنظافة فائقة.</p>
+                    <span style="color: var(--success-color);">تقييم الممتحن: 9.5/10</span>
+                </div>
+                <div class="card">
+                    <h3>حل بواسطة: سارة محمد</h3>
+                    <p>أضافت واجهة رسومية بسيطة باستخدام مكتبة `Tkinter`.</p>
+                    <span style="color: var(--success-color);">تقييم الممتحن: 10/10</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- الصفحة 5: لوحة الصدارة -->
+        <section id="leaderboard" class="page">
+            <h2>لوحة الصدارة والترتيب</h2>
+            <p>أكثر الأعضاء مشاركة وتقييماً للحلول هذا الشهر:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الترتيب</th>
+                        <th>المطور</th>
+                        <th>المشاريع المنجزة</th>
+                        <th>نقاط التقييم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>سارة محمد</td><td>14</td><td>1250</td></tr>
+                    <tr><td>2</td><td>أحمد علي</td><td>11</td><td>980</td></tr>
+                    <tr><td>3</td><td>عمر خالد</td><td>9</td><td>820</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- الصفحة 6: تسليم الكود -->
+        <section id="submit" class="page">
+            <h2>تسليم الحل البرمجي</h2>
+            <div class="card" style="max-width: 600px; margin: 0 auto;">
+                <label>اختر المشروع:</label>
+                <select>
+                    <option>نظام إدارة درجات الطلاب</option>
+                    <option>متتبع العادات اليومية</option>
+                </select>
+                
+                <label>رابط المستودع (GitHub Repository):</label>
+                <input type="text" placeholder="https://github.com/username/project">
+                
+                <label>ملاحظات حول طريقة حلك:</label>
+                <textarea rows="4" placeholder="اكتب نبذة عن التحديات التي واجهتك وكيف حللتها..."></textarea>
+                
+                <button class="btn" onclick="alert('تم تسليم كودك بنجاح! سيتم مراجعته قريباً.')">إرسال الحل للمراجعة</button>
+            </div>
+        </section>
+
+        <!-- الصفحة 7: الملف الشخصي -->
+        <section id="profile" class="page">
+            <h2>الملف الشخصي للمطور</h2>
+            <div class="card" style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+                <div style="width: 80px; height: 80px; border-radius: 50%; background-color: var(--accent-color); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #0f172a; font-weight: bold;">
+                    م
+                </div>
+                <div>
+                    <h3>المطور المبتكر</h3>
+                    <p>شغوف بلغة Python وتطوير ويب | المستوى: متوسط</p>
+                    <p style="color: var(--accent-color);">النقاط الحالية: 450 نقطة</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- الصفحة 8: عن المنصة -->
+        <section id="about" class="page">
+            <h2>عن منصة تجلّي</h2>
+            <div class="card">
+                <p>منصة "تجلّي" أنشئت بهدف جسر الفجوة بين التعلم النظري والممارسة العملية في مجالات البرمجة والتكنولوجيا.</p>
+                <p>نؤمن بأنه لا طريقة أفضل لتعلم البرمجة من بناء مشاريع حقيقية والمشاركة في مراجعة الأكواد التفاعلية مع مجتمع من الشغوفين.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        جميع الحقوق محفوظة © منصة تجلّي
+    </footer>
+
+    <!-- السكربت البرمجي للتنقل وإدارة الـ PWA -->
+    <script>
+        // 1. التنقل بين الصفحات
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(pageId));
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 2. تسجيل الـ Service Worker لخاصية الـ PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker تم تسجيله بنجاح:', reg))
+                    .catch(err => console.error('خطأ في تسجيل Service Worker:', err));
+            });
+        }
+
+        // 3. إظهار زر تثبيت التطبيق
+        let deferredPrompt;
+        const installBanner = document.getElementById('pwa-install-banner');
+        const installBtn = document.getElementById('install-btn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBanner.style.display = 'flex';
+        });
+
+        installBtn.addEventListener('click', () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        installBanner.style.display = 'none';
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        });
+    </script>
+</body>
+                                </html>            
